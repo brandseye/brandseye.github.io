@@ -533,6 +533,39 @@ to be rounded and given the percentage symbol. This function does that.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
+              <p>This formats a number as its SI unit equivalent. For example,
+1000 is 1K.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        formatSi: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(number)</span> {</span>
+            number = <span class="hljs-built_in">Math</span>.round(number);
+
+            <span class="hljs-keyword">if</span> (number / <span class="hljs-number">1000000000</span> &gt;= <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">var</span> result = <span class="hljs-built_in">Math</span>.round(number / <span class="hljs-number">1000000000</span>);
+                <span class="hljs-keyword">return</span> result + <span class="hljs-string">"G"</span>;
+            }
+            <span class="hljs-keyword">if</span> (number / <span class="hljs-number">1000000</span> &gt;= <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">var</span> result = <span class="hljs-built_in">Math</span>.round(number / <span class="hljs-number">1000000</span>);
+                <span class="hljs-keyword">return</span> result + <span class="hljs-string">"M"</span>;
+            }
+            <span class="hljs-keyword">if</span> (number / <span class="hljs-number">1000</span> &gt;= <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">var</span> result = <span class="hljs-built_in">Math</span>.round(number / <span class="hljs-number">1000</span>);
+                <span class="hljs-keyword">return</span> result + <span class="hljs-string">'k'</span>;
+            }
+
+            <span class="hljs-keyword">return</span> number;
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
               <p>Returns a pseudo-random number generator function starting with the specified seed.
 Modified from: <a href="http://jacksondunstan.com/articles/393">http://jacksondunstan.com/articles/393</a></p>
 
@@ -547,11 +580,11 @@ Modified from: <a href="http://jacksondunstan.com/articles/393">http://jacksondu
         </li>
         
         
-        <li id="section-24">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p><a id="graph-object"></a></p>
 <h2 id="the-chart-namespace">The Chart namespace</h2>
@@ -564,11 +597,11 @@ brandseye.charts = <span class="hljs-function"><span class="hljs-keyword">functi
         </li>
         
         
-        <li id="section-25">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <h3 id="private-chart-members">Private chart members</h3>
 <p>None of the following our visible outside of the namespace.</p>
@@ -687,26 +720,13 @@ brandseye.charts = <span class="hljs-function"><span class="hljs-keyword">functi
         </li>
         
         
-        <li id="section-26">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
-              <h2 id="basic-graph-functionality">Basic graph functionality</h2>
+              <hr>
 
             </div>
             
@@ -719,6 +739,19 @@ brandseye.charts = <span class="hljs-function"><span class="hljs-keyword">functi
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
+              <h2 id="basic-graph-functionality">Basic graph functionality</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
               <p>We define all of the public interface in this alias, which we will
 later assign to <strong>brandseye.charts</strong>.</p>
 
@@ -729,11 +762,11 @@ later assign to <strong>brandseye.charts</strong>.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Most of the graphs are built by extending the <strong>Graph</strong> object, which
 defines much of the basic graphing functionality.</p>
@@ -766,11 +799,11 @@ graph
         </li>
         
         
-        <li id="section-30">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <h3 id="graph-definition">Graph definition</h3>
 
@@ -779,11 +812,11 @@ graph
         </li>
         
         
-        <li id="section-31">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p><strong>Graph</strong> is defined as a collection of functions that children can override to do things
 such as set up axes, display data (as bars, lines, etc.) and so on.</p>
@@ -797,11 +830,11 @@ on the individual data elements, and a legend.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Javascript does not have a great way to provide member data
 encapsulation. Here we’re placing the member data in set called attributes.
@@ -833,11 +866,11 @@ in the constructor, rather than below in the prototype.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>This does the bulk of the work in calling the different functions that define a chart at the appropriate
 times. It is the function that you should finally call when drawing a chart.</p>
@@ -905,11 +938,11 @@ times. It is the function that you should finally call when drawing a chart.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>This performs some initial setup for the first time that the chart is rendered.</p>
 
@@ -927,11 +960,11 @@ times. It is the function that you should finally call when drawing a chart.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>Override this function to return an instance of the nvchart
 that the child of <em>Graph</em> should use.</p>
@@ -945,11 +978,11 @@ that the child of <em>Graph</em> should use.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>This method is meant to run through the data set and initialise any extra
 values that might be needed. This default implementation also determines the maximum length
@@ -980,11 +1013,11 @@ of labels that should be displayed.</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>Most of the charts will want to set data in the default format.
 Some, like the piechart, expect the data formatted slightly
@@ -1000,11 +1033,11 @@ formatting and setting the data on the chart.</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>A helper method for draw labels on the x axis.</p>
 
@@ -1077,11 +1110,11 @@ formatting and setting the data on the chart.</p>
         </li>
         
         
-        <li id="section-39">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>This method sets up basic properties of the chart. For example, it can set up the drawing
 extants. The default versions sets up an nvd3 chart.</p>
@@ -1108,11 +1141,11 @@ extants. The default versions sets up an nvd3 chart.</p>
         </li>
         
         
-        <li id="section-40">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>For piecharts.</p>
 
@@ -1124,11 +1157,11 @@ extants. The default versions sets up an nvd3 chart.</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>This is used to update the x axis before rendering</p>
 
@@ -1139,11 +1172,11 @@ extants. The default versions sets up an nvd3 chart.</p>
         </li>
         
         
-        <li id="section-42">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>And this is used to update the x axis after rendering.</p>
 
@@ -1162,11 +1195,11 @@ extants. The default versions sets up an nvd3 chart.</p>
         </li>
         
         
-        <li id="section-43">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p>Set up the y axis before we render the chart.</p>
 
@@ -1184,11 +1217,11 @@ extants. The default versions sets up an nvd3 chart.</p>
         </li>
         
         
-        <li id="section-44">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <p>Modify the y axis after we’ve rendered the chart.</p>
 
@@ -1205,11 +1238,11 @@ extants. The default versions sets up an nvd3 chart.</p>
         </li>
         
         
-        <li id="section-45">
+        <li id="section-46">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-46">&#182;</a>
               </div>
               <p>This is a useful method to override when setting up the container
 that we’re rendering to, such as its background colour, and so on.</p>
@@ -1227,11 +1260,11 @@ that we’re rendering to, such as its background colour, and so on.</p>
         </li>
         
         
-        <li id="section-46">
+        <li id="section-47">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-47">&#182;</a>
               </div>
               <p>In this case, our width and height values have been swapped.
 This happens, for instance, when rendering bar charts.</p>
@@ -1247,11 +1280,11 @@ This happens, for instance, when rendering bar charts.</p>
         </li>
         
         
-        <li id="section-47">
+        <li id="section-48">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
               <p>All of our containers (usually SVG divs) are marked with the <em>.bm</em> class.</p>
 
@@ -1270,11 +1303,11 @@ This happens, for instance, when rendering bar charts.</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-49">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               <p>Used to determine how much space the chart’s legend should take.</p>
 
@@ -1287,11 +1320,11 @@ This happens, for instance, when rendering bar charts.</p>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-50">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
               <p>This draws the legend on the chart.</p>
 
@@ -1310,11 +1343,11 @@ This happens, for instance, when rendering bar charts.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-51">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
               <p>This is the default margins that the graph should have. It is used
 in <em>calculateMargins()</em> to determine the true margins of the charts.</p>
@@ -1333,11 +1366,11 @@ in <em>calculateMargins()</em> to determine the true margins of the charts.</p>
         </li>
         
         
-        <li id="section-51">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               <p>Calculates the margins the chart requires, using the <em>defaultMargins()</em> of the chart.
 It also takes in to account features such as the legend size.</p>
@@ -1368,11 +1401,11 @@ It also takes in to account features such as the legend size.</p>
         </li>
         
         
-        <li id="section-52">
+        <li id="section-53">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+                <a class="pilcrow" href="#section-53">&#182;</a>
               </div>
               <p>Override to supply code that will arrange the axis bar ticks.</p>
 
@@ -1389,11 +1422,11 @@ It also takes in to account features such as the legend size.</p>
         </li>
         
         
-        <li id="section-53">
+        <li id="section-54">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+                <a class="pilcrow" href="#section-54">&#182;</a>
               </div>
               <p>This renders labels on the chart.</p>
 
@@ -1424,11 +1457,11 @@ It also takes in to account features such as the legend size.</p>
         </li>
         
         
-        <li id="section-54">
+        <li id="section-55">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+                <a class="pilcrow" href="#section-55">&#182;</a>
               </div>
               <hr>
 
@@ -1437,11 +1470,11 @@ It also takes in to account features such as the legend size.</p>
         </li>
         
         
-        <li id="section-55">
+        <li id="section-56">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+                <a class="pilcrow" href="#section-56">&#182;</a>
               </div>
               <h3 id="getters-and-setters">Getters and Setters</h3>
 <p>The getters and setters provide access to the various data elements that a graph requires.
@@ -1458,11 +1491,11 @@ with no argument, they will merely return the data element.</p>
         </li>
         
         
-        <li id="section-56">
+        <li id="section-57">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+                <a class="pilcrow" href="#section-57">&#182;</a>
               </div>
               <p><strong>data()</strong> sets the data to be displayed. The data can be provided in a number of formats.
 The simplest is to provide an array of objects with x / y values, like so:</p>
@@ -1513,11 +1546,11 @@ The simplest is to provide an array of objects with x / y values, like so:</p>
         </li>
         
         
-        <li id="section-57">
+        <li id="section-58">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-57">&#182;</a>
+                <a class="pilcrow" href="#section-58">&#182;</a>
               </div>
               <p>Sets the element in which the graph should be displayed. This
 should be native dom element (rather than a jquery or d3 selection).</p>
@@ -1533,11 +1566,11 @@ should be native dom element (rather than a jquery or d3 selection).</p>
         </li>
         
         
-        <li id="section-58">
+        <li id="section-59">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-58">&#182;</a>
+                <a class="pilcrow" href="#section-59">&#182;</a>
               </div>
               <p>Gets the underlying nvd3 (or other element) used to create this chart.</p>
 
@@ -1562,11 +1595,11 @@ should be native dom element (rather than a jquery or d3 selection).</p>
         </li>
         
         
-        <li id="section-59">
+        <li id="section-60">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-59">&#182;</a>
+                <a class="pilcrow" href="#section-60">&#182;</a>
               </div>
               <p><strong>x()</strong> and <strong>y()</strong> specify how to obtain the <em>x</em> and <em>y</em> components
 from the individual data values. They default to returning the values for keys
@@ -1593,13 +1626,17 @@ names x (or similarly y) from the data. The default implementations are equivale
         </li>
         
         
-        <li id="section-60">
+        <li id="section-61">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-60">&#182;</a>
+                <a class="pilcrow" href="#section-61">&#182;</a>
               </div>
-              <p>Pass this a function to provide formatting of x axis values.</p>
+              <p>Pass this a function to provide formatting of x axis values.
+This function will be passed two values. The first is the value
+that should be formatted. The second is a number indicating the amount
+of visual compression that the number value should have. The larger
+this number, the larger the amount of visual compression.</p>
 
             </div>
             
@@ -1612,11 +1649,11 @@ names x (or similarly y) from the data. The default implementations are equivale
         </li>
         
         
-        <li id="section-61">
+        <li id="section-62">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-61">&#182;</a>
+                <a class="pilcrow" href="#section-62">&#182;</a>
               </div>
               <p>Pass a function to format data labels.</p>
 
@@ -1637,11 +1674,11 @@ names x (or similarly y) from the data. The default implementations are equivale
         </li>
         
         
-        <li id="section-62">
+        <li id="section-63">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-62">&#182;</a>
+                <a class="pilcrow" href="#section-63">&#182;</a>
               </div>
               <p>Set to true / false depending on whether you want to show or hide the labels.</p>
 
@@ -1656,11 +1693,11 @@ names x (or similarly y) from the data. The default implementations are equivale
         </li>
         
         
-        <li id="section-63">
+        <li id="section-64">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-63">&#182;</a>
+                <a class="pilcrow" href="#section-64">&#182;</a>
               </div>
               <p>Provides access to the element that draws the labels on the charts.</p>
 
@@ -1677,11 +1714,11 @@ names x (or similarly y) from the data. The default implementations are equivale
         </li>
         
         
-        <li id="section-64">
+        <li id="section-65">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-64">&#182;</a>
+                <a class="pilcrow" href="#section-65">&#182;</a>
               </div>
               <p>If you need the <em>y</em>-axis to cover a particular range, pass this function an
 array containing the minimum and maximum range.</p>
@@ -1704,11 +1741,11 @@ array containing the minimum and maximum range.</p>
         </li>
         
         
-        <li id="section-65">
+        <li id="section-66">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-65">&#182;</a>
+                <a class="pilcrow" href="#section-66">&#182;</a>
               </div>
               <p>Pass this an array of values to use for the <em>x</em>-axis tooltips.</p>
 
@@ -1723,11 +1760,11 @@ array containing the minimum and maximum range.</p>
         </li>
         
         
-        <li id="section-66">
+        <li id="section-67">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-66">&#182;</a>
+                <a class="pilcrow" href="#section-67">&#182;</a>
               </div>
               <p>This allows you to override the display values for <em>x</em>-axis components.</p>
 
@@ -1742,11 +1779,11 @@ array containing the minimum and maximum range.</p>
         </li>
         
         
-        <li id="section-67">
+        <li id="section-68">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-67">&#182;</a>
+                <a class="pilcrow" href="#section-68">&#182;</a>
               </div>
               <p>An array of colours to be used by the graph. For most graphs, this is the colour per data series.
 For the pie chart, this would be the colour per slice.</p>
@@ -1762,11 +1799,11 @@ For the pie chart, this would be the colour per slice.</p>
         </li>
         
         
-        <li id="section-68">
+        <li id="section-69">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-68">&#182;</a>
+                <a class="pilcrow" href="#section-69">&#182;</a>
               </div>
               <p>Of use for the histogram. It defines the time period of the <em>x</em>-axis. It may be set to:</p>
 <ul>
@@ -1788,11 +1825,11 @@ For the pie chart, this would be the colour per slice.</p>
         </li>
         
         
-        <li id="section-69">
+        <li id="section-70">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-69">&#182;</a>
+                <a class="pilcrow" href="#section-70">&#182;</a>
               </div>
               <p>Set to true / false whether the legend should be shown or hidden.</p>
 
@@ -1807,11 +1844,11 @@ For the pie chart, this would be the colour per slice.</p>
         </li>
         
         
-        <li id="section-70">
+        <li id="section-71">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-70">&#182;</a>
+                <a class="pilcrow" href="#section-71">&#182;</a>
               </div>
               <p>Use this to provide a label for the numerical data axis of the chart. This can
 either be a string, or it could be a map providing an option of a longer or shorter
@@ -1833,11 +1870,11 @@ string depending on the amount of available space:</p>
         </li>
         
         
-        <li id="section-71">
+        <li id="section-72">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-71">&#182;</a>
+                <a class="pilcrow" href="#section-72">&#182;</a>
               </div>
               <p>By default, the library will use an opacity of zero to make things
 invisible. Unfortunately, in some situations (for instance, when
@@ -1855,11 +1892,11 @@ In that case, you can choose a custom value to use here.</p>
         </li>
         
         
-        <li id="section-72">
+        <li id="section-73">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-72">&#182;</a>
+                <a class="pilcrow" href="#section-73">&#182;</a>
               </div>
               <p>The graphs are animated, and this is how long they should be animated for, in milliseconds.
 This defaults to 250.</p>
@@ -1875,11 +1912,11 @@ This defaults to 250.</p>
         </li>
         
         
-        <li id="section-73">
+        <li id="section-74">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-73">&#182;</a>
+                <a class="pilcrow" href="#section-74">&#182;</a>
               </div>
               <p>A map giving the amount of space to be added around the chart.</p>
 
@@ -1899,11 +1936,11 @@ This defaults to 250.</p>
         </li>
         
         
-        <li id="section-74">
+        <li id="section-75">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-74">&#182;</a>
+                <a class="pilcrow" href="#section-75">&#182;</a>
               </div>
               <p>Provides access to a <a href="https://github.com/mbostock/d3/wiki/Internals#wiki-events">d3 event dispatch object</a>,
 for handling events fired by the graph. The following events are supported:</p>
@@ -1924,11 +1961,11 @@ for handling events fired by the graph. The following events are supported:</p>
         </li>
         
         
-        <li id="section-75">
+        <li id="section-76">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-75">&#182;</a>
+                <a class="pilcrow" href="#section-76">&#182;</a>
               </div>
               <p>Returns the <a href="https://github.com/mbostock/d3/wiki/Internals#wiki-events">d3 dispatch</a> associated with
 the underlying graph element</p>
@@ -1946,11 +1983,11 @@ the underlying graph element</p>
         </li>
         
         
-        <li id="section-76">
+        <li id="section-77">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-76">&#182;</a>
+                <a class="pilcrow" href="#section-77">&#182;</a>
               </div>
               <p>This is the class of the item that should be interactive in the graph, such as bars or pie slices.</p>
 
@@ -1968,27 +2005,13 @@ the underlying graph element</p>
         </li>
         
         
-        <li id="section-77">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-77">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-78">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-78">&#182;</a>
               </div>
-              <p><a id="charts"></a></p>
-<h2 id="the-charts">The Charts</h2>
+              <hr>
 
             </div>
             
@@ -2001,7 +2024,8 @@ the underlying graph element</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-79">&#182;</a>
               </div>
-              <h3 id="histograms">Histograms</h3>
+              <p><a id="charts"></a></p>
+<h2 id="the-charts">The Charts</h2>
 
             </div>
             
@@ -2013,6 +2037,19 @@ the underlying graph element</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <h3 id="histograms">Histograms</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
               </div>
               <p>The histogram is useful for accumulating discrete values in to buckets,
 such as for showing the number of mentions appearing over time.</p>
@@ -2044,11 +2081,11 @@ such as for showing the number of mentions appearing over time.</p>
         </li>
         
         
-        <li id="section-81">
+        <li id="section-82">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-81">&#182;</a>
+                <a class="pilcrow" href="#section-82">&#182;</a>
               </div>
               <p>Here, if there are comparisons, we want to map label dates to lists of comparison dates.</p>
 
@@ -2070,11 +2107,11 @@ such as for showing the number of mentions appearing over time.</p>
         </li>
         
         
-        <li id="section-82">
+        <li id="section-83">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-82">&#182;</a>
+                <a class="pilcrow" href="#section-83">&#182;</a>
               </div>
               <p>We don’t want to include any duplicate dates.</p>
 
@@ -2112,11 +2149,11 @@ such as for showing the number of mentions appearing over time.</p>
         </li>
         
         
-        <li id="section-83">
+        <li id="section-84">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-83">&#182;</a>
+                <a class="pilcrow" href="#section-84">&#182;</a>
               </div>
               <p>Here we want to see if this is the beginning of a month</p>
 
@@ -2206,11 +2243,11 @@ such as for showing the number of mentions appearing over time.</p>
         </li>
         
         
-        <li id="section-84">
+        <li id="section-85">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-84">&#182;</a>
+                <a class="pilcrow" href="#section-85">&#182;</a>
               </div>
               <p>Returns true if we should format this date long, rather than just
 with the date.</p>
@@ -2222,26 +2259,13 @@ with the date.</p>
         </li>
         
         
-        <li id="section-85">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-85">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-86">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-86">&#182;</a>
               </div>
-              <h3 id="bar-charts">Bar charts</h3>
+              <hr>
 
             </div>
             
@@ -2253,6 +2277,19 @@ with the date.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <h3 id="bar-charts">Bar charts</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
               </div>
               <p><em>Bar charts</em> are useful for comparing categories of things. Bar charts
 are rendered horizontally: if you would like vertical bars, see the <em>ColumnChart</em>.</p>
@@ -2320,26 +2357,13 @@ are rendered horizontally: if you would like vertical bars, see the <em>ColumnCh
         </li>
         
         
-        <li id="section-88">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-88">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-89">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-89">&#182;</a>
               </div>
-              <h3 id="column-charts">Column charts</h3>
+              <hr>
 
             </div>
             
@@ -2351,6 +2375,19 @@ are rendered horizontally: if you would like vertical bars, see the <em>ColumnCh
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-90">&#182;</a>
+              </div>
+              <h3 id="column-charts">Column charts</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-91">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-91">&#182;</a>
               </div>
               <p><em>Column charts</em> are useful for comparing categories of things. Column charts
 are rendered vertically: if you would like horizontal bars, see the <em>BarChart</em>.</p>
@@ -2384,11 +2421,11 @@ are rendered vertically: if you would like horizontal bars, see the <em>BarChart
         </li>
         
         
-        <li id="section-91">
+        <li id="section-92">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-91">&#182;</a>
+                <a class="pilcrow" href="#section-92">&#182;</a>
               </div>
               <p>Store an index for legends.</p>
 
@@ -2399,11 +2436,11 @@ are rendered vertically: if you would like horizontal bars, see the <em>BarChart
         </li>
         
         
-        <li id="section-92">
+        <li id="section-93">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-92">&#182;</a>
+                <a class="pilcrow" href="#section-93">&#182;</a>
               </div>
               <p>Determine length for x axis</p>
 
@@ -2419,11 +2456,11 @@ are rendered vertically: if you would like horizontal bars, see the <em>BarChart
         </li>
         
         
-        <li id="section-93">
+        <li id="section-94">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-93">&#182;</a>
+                <a class="pilcrow" href="#section-94">&#182;</a>
               </div>
               <p>Determine length for y axis</p>
 
@@ -2482,11 +2519,11 @@ are rendered vertically: if you would like horizontal bars, see the <em>BarChart
         </li>
         
         
-        <li id="section-94">
+        <li id="section-95">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-94">&#182;</a>
+                <a class="pilcrow" href="#section-95">&#182;</a>
               </div>
               <p>Budgeting a set pixel width per letter (innacurate because not-fixed width font in use)
 This may be an odd number because the labels are rotated.</p>
@@ -2511,26 +2548,14 @@ This may be an odd number because the labels are rotated.</p>
         </li>
         
         
-        <li id="section-95">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-95">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-96">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-96">&#182;</a>
               </div>
-              
+              <hr>
+
             </div>
             
         </li>
@@ -2542,8 +2567,7 @@ This may be an odd number because the labels are rotated.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-97">&#182;</a>
               </div>
-              <h3 id="pie-charts">Pie charts</h3>
-
+              
             </div>
             
         </li>
@@ -2554,6 +2578,19 @@ This may be an odd number because the labels are rotated.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-98">&#182;</a>
+              </div>
+              <h3 id="pie-charts">Pie charts</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-99">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-99">&#182;</a>
               </div>
               <p>This is an example of a pie chart
 <img src="http://brandseye.github.io/brandseyejs/images/pie-chart.png" alt="Pie chart example"></p>
@@ -2651,26 +2688,13 @@ This may be an odd number because the labels are rotated.</p>
         </li>
         
         
-        <li id="section-99">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-99">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-100">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-100">&#182;</a>
               </div>
-              <h3 id="line-charts">Line charts</h3>
+              <hr>
 
             </div>
             
@@ -2682,6 +2706,19 @@ This may be an odd number because the labels are rotated.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-101">&#182;</a>
+              </div>
+              <h3 id="line-charts">Line charts</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-102">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-102">&#182;</a>
               </div>
               <p>This shows timeseries data. Expects the <em>x</em>-axis to show dates.</p>
 <p>This is an example of a line chart:
@@ -2773,11 +2810,11 @@ This may be an odd number because the labels are rotated.</p>
         </li>
         
         
-        <li id="section-102">
+        <li id="section-103">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-102">&#182;</a>
+                <a class="pilcrow" href="#section-103">&#182;</a>
               </div>
               <p>We don’t want to include any duplicate dates.</p>
 
@@ -2790,11 +2827,11 @@ This may be an odd number because the labels are rotated.</p>
         </li>
         
         
-        <li id="section-103">
+        <li id="section-104">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-103">&#182;</a>
+                <a class="pilcrow" href="#section-104">&#182;</a>
               </div>
               <p>Now we want to rotate and translate the labels appropriately.</p>
 
@@ -2853,26 +2890,13 @@ This may be an odd number because the labels are rotated.</p>
         </li>
         
         
-        <li id="section-104">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-104">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-105">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
-              <h3 id="word-clouds">Word Clouds</h3>
+              <hr>
 
             </div>
             
@@ -2884,6 +2908,19 @@ This may be an odd number because the labels are rotated.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-106">&#182;</a>
+              </div>
+              <h3 id="word-clouds">Word Clouds</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-107">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-107">&#182;</a>
               </div>
               <p>While this chart uses a similar interface to the previous charts, its expected data format is different,
 as is the kind of data that it displays.</p>
@@ -2904,11 +2941,11 @@ layout that you like, you can effectively save and replay that.</p>
         </li>
         
         
-        <li id="section-107">
+        <li id="section-108">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-107">&#182;</a>
+                <a class="pilcrow" href="#section-108">&#182;</a>
               </div>
               <p>Unlike the other graphs, the default fields for retrieving data for word clouds
 is <em>word</em> and <em>count</em>.</p>
@@ -3002,11 +3039,11 @@ is <em>word</em> and <em>count</em>.</p>
         </li>
         
         
-        <li id="section-108">
+        <li id="section-109">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-108">&#182;</a>
+                <a class="pilcrow" href="#section-109">&#182;</a>
               </div>
               <p>This is called after the words have been laid out by the layout
 algorithm. It places the words in the svg container
@@ -3065,11 +3102,11 @@ and lays them out.</p>
         </li>
         
         
-        <li id="section-109">
+        <li id="section-110">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-109">&#182;</a>
+                <a class="pilcrow" href="#section-110">&#182;</a>
               </div>
               <p>This determines how the different fonts should be scaled to one another.
 There are three choices (specified as a string):</p>
@@ -3102,11 +3139,11 @@ There are three choices (specified as a string):</p>
         </li>
         
         
-        <li id="section-110">
+        <li id="section-111">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-110">&#182;</a>
+                <a class="pilcrow" href="#section-111">&#182;</a>
               </div>
               <p>Sets the font to be used for sizing information. This defaults
 to sans-serif. Please ensure to use the same font as you would when
@@ -3124,11 +3161,11 @@ as overlapping words, large spaces between words, and so on.</p>
         </li>
         
         
-        <li id="section-111">
+        <li id="section-112">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-111">&#182;</a>
+                <a class="pilcrow" href="#section-112">&#182;</a>
               </div>
               <p>This seed value is used to determine the sequence of random values that are used when
 laying out the words. If you would like to use the same layout, use the same seed as previously used.
@@ -3145,11 +3182,11 @@ Each new instance of <em>WordCloudChart</em> will have a seed initialised to a r
         </li>
         
         
-        <li id="section-112">
+        <li id="section-113">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-112">&#182;</a>
+                <a class="pilcrow" href="#section-113">&#182;</a>
               </div>
               <p>This stops the animation of the word cloud.</p>
 
@@ -3162,27 +3199,13 @@ Each new instance of <em>WordCloudChart</em> will have a seed initialised to a r
         </li>
         
         
-        <li id="section-113">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-113">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-114">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-114">&#182;</a>
               </div>
-              <h2 id="charts-not-inheriting-from-graph">Charts not inheriting from Graph</h2>
-<p>We have two charts that don’t follow the standard chart API: <em>sparklines</em> and <em>area</em>.</p>
+              <hr>
 
             </div>
             
@@ -3195,7 +3218,8 @@ Each new instance of <em>WordCloudChart</em> will have a seed initialised to a r
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-115">&#182;</a>
               </div>
-              <h3 id="sparklines">Sparklines</h3>
+              <h2 id="charts-not-inheriting-from-graph">Charts not inheriting from Graph</h2>
+<p>We have two charts that don’t follow the standard chart API: <em>sparklines</em> and <em>area</em>.</p>
 
             </div>
             
@@ -3207,6 +3231,19 @@ Each new instance of <em>WordCloudChart</em> will have a seed initialised to a r
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-116">&#182;</a>
+              </div>
+              <h3 id="sparklines">Sparklines</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-117">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-117">&#182;</a>
               </div>
               <p>A sparkline draws a small line without axes or labels. It’s a great way to show the outline
 of a data set inside of a text area, such as in a paragraph.</p>
@@ -3278,26 +3315,13 @@ brandseye.charts.Sparkline($(<span class="hljs-string">'.sparkline'</span>)[<spa
         </li>
         
         
-        <li id="section-117">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-117">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-118">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-118">&#182;</a>
               </div>
-              <h3 id="area-charts">Area charts</h3>
+              <hr>
 
             </div>
             
@@ -3309,6 +3333,19 @@ brandseye.charts.Sparkline($(<span class="hljs-string">'.sparkline'</span>)[<spa
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-119">&#182;</a>
+              </div>
+              <h3 id="area-charts">Area charts</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-120">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-120">&#182;</a>
               </div>
               <p>Similar to sparklines, these also colour the area under the chart.</p>
 <p>The example is almost identical to the sparkline example. Do remember to
@@ -3379,27 +3416,13 @@ brandseye.charts.Area($(<span class="hljs-string">'.area'</span>)[<span class="h
         </li>
         
         
-        <li id="section-120">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-120">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-121">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-121">&#182;</a>
               </div>
-              <p><a id="load"></a></p>
-<h2 id="reading-data-from-the-api">Reading data from the API</h2>
+              <hr>
 
             </div>
             
@@ -3411,6 +3434,20 @@ brandseye.charts.Area($(<span class="hljs-string">'.area'</span>)[<span class="h
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-122">&#182;</a>
+              </div>
+              <p><a id="load"></a></p>
+<h2 id="reading-data-from-the-api">Reading data from the API</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-123">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-123">&#182;</a>
               </div>
               <p>The address of the BrandsEye API server is <a href="https://api.brandseye.com">https://api.brandseye.com</a>. This is a restful,
 json api. You can visit the page to view the documentation on the api. When asked for a username / password,
@@ -3424,11 +3461,11 @@ Please contact your client service representative if you need to find out what y
         </li>
         
         
-        <li id="section-123">
+        <li id="section-124">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-123">&#182;</a>
+                <a class="pilcrow" href="#section-124">&#182;</a>
               </div>
               <p><strong>loadFromApi()</strong> is a helper function to load data from the api. You very likely would want
 to only use this when testing the library, as it will expose your api key in your
@@ -3538,11 +3575,11 @@ representing the API endpoint that you wish to access. For example, rest/account
         </li>
         
         
-        <li id="section-124">
+        <li id="section-125">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-124">&#182;</a>
+                <a class="pilcrow" href="#section-125">&#182;</a>
               </div>
               <hr>
 
@@ -3551,11 +3588,11 @@ representing the API endpoint that you wish to access. For example, rest/account
         </li>
         
         
-        <li id="section-125">
+        <li id="section-126">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-125">&#182;</a>
+                <a class="pilcrow" href="#section-126">&#182;</a>
               </div>
               <p><a id="metrics"></a></p>
 <h2 id="the-metrics">The Metrics</h2>
@@ -3570,11 +3607,11 @@ support various features such as comparison data sets (multiple series),</p>
         </li>
         
         
-        <li id="section-126">
+        <li id="section-127">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-126">&#182;</a>
+                <a class="pilcrow" href="#section-127">&#182;</a>
               </div>
               <p>This provides a way of easily defining graphs that query the <a href="https://api.brandseye.com">BrandsEye API</a> and hence
 have a lot of shared boilerplate code in terms of setting up the call to the API and then displaying
@@ -3635,11 +3672,11 @@ metric
         </li>
         
         
-        <li id="section-127">
+        <li id="section-128">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-127">&#182;</a>
+                <a class="pilcrow" href="#section-128">&#182;</a>
               </div>
               <h3 id="showing-volumes">Showing volumes</h3>
 
@@ -3648,11 +3685,11 @@ metric
         </li>
         
         
-        <li id="section-128">
+        <li id="section-129">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-128">&#182;</a>
+                <a class="pilcrow" href="#section-129">&#182;</a>
               </div>
               <p>This displays a histogram showing the number of mentions
 received in a given time period.</p>
@@ -3673,23 +3710,11 @@ received in a given time period.</p>
         <span class="hljs-keyword">this</span>
             .x(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.published; })
             .y(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.count; })
+            .tickFormat(brandseye.utilities.formatSi)
             .dataAxisLabel(<span class="hljs-string">"Volume"</span>);
 
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-129">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-129">&#182;</a>
-              </div>
-              <h3 id="opportunity-to-see">Opportunity-to-see</h3>
-
-            </div>
             
         </li>
         
@@ -3699,6 +3724,19 @@ received in a given time period.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-130">&#182;</a>
+              </div>
+              <h3 id="opportunity-to-see">Opportunity-to-see</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-131">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-131">&#182;</a>
               </div>
               <p>This displays a histogram showing the OTS over a given time period.</p>
 
@@ -3719,23 +3757,11 @@ received in a given time period.</p>
         <span class="hljs-keyword">this</span>
             .x(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.published; })
             .y(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.ots; })
+            .tickFormat(brandseye.utilities.formatSi)
             .dataAxisLabel({long: <span class="hljs-string">"Opportunity to see"</span>, short: <span class="hljs-string">"OTS"</span>});
 
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-131">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-131">&#182;</a>
-              </div>
-              <h3 id="advert-value-equivalent">Advert-value-equivalent</h3>
-
-            </div>
             
         </li>
         
@@ -3745,6 +3771,19 @@ received in a given time period.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-132">&#182;</a>
+              </div>
+              <h3 id="advert-value-equivalent">Advert-value-equivalent</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-133">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-133">&#182;</a>
               </div>
               <p>This displays a histogram showing the AVE over a given time period. These values
 are by default in Rands (ZAR).</p>
@@ -3766,23 +3805,11 @@ are by default in Rands (ZAR).</p>
         <span class="hljs-keyword">this</span>
             .x(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.published; })
             .y(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.ave; })
+            .tickFormat(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> <span class="hljs-string">"R"</span> + brandseye.utilities.formatSi(d); })
             .dataAxisLabel({long: <span class="hljs-string">"Ad-value equivalent"</span>, short: <span class="hljs-string">"AVE"</span>});
 
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-133">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-133">&#182;</a>
-              </div>
-              <h3 id="engagement">Engagement</h3>
-
-            </div>
             
         </li>
         
@@ -3792,6 +3819,19 @@ are by default in Rands (ZAR).</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-134">&#182;</a>
+              </div>
+              <h3 id="engagement">Engagement</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-135">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-135">&#182;</a>
               </div>
               <p>This displays a histogram showing a breakdown of engagement over time.</p>
 
@@ -3820,11 +3860,11 @@ are by default in Rands (ZAR).</p>
         </li>
         
         
-        <li id="section-135">
+        <li id="section-136">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-135">&#182;</a>
+                <a class="pilcrow" href="#section-136">&#182;</a>
               </div>
               <h3 id="categories">Categories</h3>
 
@@ -3833,11 +3873,11 @@ are by default in Rands (ZAR).</p>
         </li>
         
         
-        <li id="section-136">
+        <li id="section-137">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-136">&#182;</a>
+                <a class="pilcrow" href="#section-137">&#182;</a>
               </div>
               <p>Shows a column chart breaking showing the distribution of mentions between
 different categories of:</p>
@@ -3883,11 +3923,11 @@ different categories of:</p>
         </li>
         
         
-        <li id="section-137">
+        <li id="section-138">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-137">&#182;</a>
+                <a class="pilcrow" href="#section-138">&#182;</a>
               </div>
               <h3 id="countries">Countries</h3>
 
@@ -3896,11 +3936,11 @@ different categories of:</p>
         </li>
         
         
-        <li id="section-138">
+        <li id="section-139">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-138">&#182;</a>
+                <a class="pilcrow" href="#section-139">&#182;</a>
               </div>
               <p>Shows a break down of volume by country.</p>
 
@@ -3934,11 +3974,11 @@ different categories of:</p>
         </li>
         
         
-        <li id="section-139">
+        <li id="section-140">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-139">&#182;</a>
+                <a class="pilcrow" href="#section-140">&#182;</a>
               </div>
               <h3 id="language">Language</h3>
 
@@ -3947,11 +3987,11 @@ different categories of:</p>
         </li>
         
         
-        <li id="section-140">
+        <li id="section-141">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-140">&#182;</a>
+                <a class="pilcrow" href="#section-141">&#182;</a>
               </div>
               <p>Shows a break down of volume by language</p>
 
@@ -3985,11 +4025,11 @@ different categories of:</p>
         </li>
         
         
-        <li id="section-141">
+        <li id="section-142">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-141">&#182;</a>
+                <a class="pilcrow" href="#section-142">&#182;</a>
               </div>
               <h3 id="gender">Gender</h3>
 
@@ -3998,11 +4038,11 @@ different categories of:</p>
         </li>
         
         
-        <li id="section-142">
+        <li id="section-143">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-142">&#182;</a>
+                <a class="pilcrow" href="#section-143">&#182;</a>
               </div>
               <p>Shows a break down of volume by gender.</p>
 
@@ -4029,11 +4069,11 @@ different categories of:</p>
         </li>
         
         
-        <li id="section-143">
+        <li id="section-144">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-143">&#182;</a>
+                <a class="pilcrow" href="#section-144">&#182;</a>
               </div>
               <p>The API doesn’t return very displayed names for the gender options.
 Here we override how they should be displayed, just to neaten them up
@@ -4057,11 +4097,11 @@ somewhat.</p>
         </li>
         
         
-        <li id="section-144">
+        <li id="section-145">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-144">&#182;</a>
+                <a class="pilcrow" href="#section-145">&#182;</a>
               </div>
               <h3 id="sentiment">Sentiment</h3>
 
@@ -4070,11 +4110,11 @@ somewhat.</p>
         </li>
         
         
-        <li id="section-145">
+        <li id="section-146">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-145">&#182;</a>
+                <a class="pilcrow" href="#section-146">&#182;</a>
               </div>
               <p>Volume by sentiment</p>
 
@@ -4106,11 +4146,11 @@ somewhat.</p>
         </li>
         
         
-        <li id="section-146">
+        <li id="section-147">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-146">&#182;</a>
+                <a class="pilcrow" href="#section-147">&#182;</a>
               </div>
               <h3 id="sources">Sources</h3>
 
@@ -4119,11 +4159,11 @@ somewhat.</p>
         </li>
         
         
-        <li id="section-147">
+        <li id="section-148">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-147">&#182;</a>
+                <a class="pilcrow" href="#section-148">&#182;</a>
               </div>
               <p>The top sources that mentions come from</p>
 
@@ -4157,11 +4197,11 @@ somewhat.</p>
         </li>
         
         
-        <li id="section-148">
+        <li id="section-149">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-148">&#182;</a>
+                <a class="pilcrow" href="#section-149">&#182;</a>
               </div>
               <h3 id="mentions-by-author">Mentions by author</h3>
 
@@ -4170,11 +4210,11 @@ somewhat.</p>
         </li>
         
         
-        <li id="section-149">
+        <li id="section-150">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-149">&#182;</a>
+                <a class="pilcrow" href="#section-150">&#182;</a>
               </div>
               <p>Mention volumes broken down by author.</p>
 
@@ -4203,11 +4243,11 @@ somewhat.</p>
         </li>
         
         
-        <li id="section-150">
+        <li id="section-151">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-150">&#182;</a>
+                <a class="pilcrow" href="#section-151">&#182;</a>
               </div>
               <p>Here we only override a single option: the UNKNOWN
 author is made to print prettier. Notice that you don’t
@@ -4227,11 +4267,11 @@ need to override everything, but can selectively do so.</p>
         </li>
         
         
-        <li id="section-151">
+        <li id="section-152">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-151">&#182;</a>
+                <a class="pilcrow" href="#section-152">&#182;</a>
               </div>
               <h3 id="reputation">Reputation</h3>
 
@@ -4240,11 +4280,11 @@ need to override everything, but can selectively do so.</p>
         </li>
         
         
-        <li id="section-152">
+        <li id="section-153">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-152">&#182;</a>
+                <a class="pilcrow" href="#section-153">&#182;</a>
               </div>
               <p>A line chart showing the basic reputation of the brand.</p>
 
@@ -4290,11 +4330,11 @@ need to override everything, but can selectively do so.</p>
         </li>
         
         
-        <li id="section-153">
+        <li id="section-154">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-153">&#182;</a>
+                <a class="pilcrow" href="#section-154">&#182;</a>
               </div>
               <h3 id="a-word-cloud">A word cloud</h3>
 
@@ -4303,11 +4343,11 @@ need to override everything, but can selectively do so.</p>
         </li>
         
         
-        <li id="section-154">
+        <li id="section-155">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-154">&#182;</a>
+                <a class="pilcrow" href="#section-155">&#182;</a>
               </div>
               <p>Shows the distribution of words in selected mentions.</p>
 
@@ -4336,27 +4376,13 @@ need to override everything, but can selectively do so.</p>
         </li>
         
         
-        <li id="section-155">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-155">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-156">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-156">&#182;</a>
               </div>
-              <p><a id="appendix"></a></p>
-<h2 id="appendix-various-helper-objects">Appendix: various helper objects</h2>
+              <hr>
 
             </div>
             
@@ -4369,7 +4395,8 @@ need to override everything, but can selectively do so.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-157">&#182;</a>
               </div>
-              <h3 id="drawing-labels">Drawing labels</h3>
+              <p><a id="appendix"></a></p>
+<h2 id="appendix-various-helper-objects">Appendix: various helper objects</h2>
 
             </div>
             
@@ -4381,6 +4408,19 @@ need to override everything, but can selectively do so.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-158">&#182;</a>
+              </div>
+              <h3 id="drawing-labels">Drawing labels</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-159">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-159">&#182;</a>
               </div>
               <p>This places labels on the data items of a chart, such as the bars on a bar chart.
 Currently this supports row and column charts, by
@@ -4410,11 +4450,11 @@ how the label will appear by setting the format function.</p>
         </li>
         
         
-        <li id="section-159">
+        <li id="section-160">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-159">&#182;</a>
+                <a class="pilcrow" href="#section-160">&#182;</a>
               </div>
               <p>The function that does the actual rendering of the labels. It takes
 a D3 selection and returns itself.</p>
@@ -4440,11 +4480,11 @@ a D3 selection and returns itself.</p>
         </li>
         
         
-        <li id="section-160">
+        <li id="section-161">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-160">&#182;</a>
+                <a class="pilcrow" href="#section-161">&#182;</a>
               </div>
               <p>We are attempting to fit the label in the middle of its bar, or its section
 of the bar if there are series.</p>
@@ -4457,11 +4497,11 @@ of the bar if there are series.</p>
         </li>
         
         
-        <li id="section-161">
+        <li id="section-162">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-161">&#182;</a>
+                <a class="pilcrow" href="#section-162">&#182;</a>
               </div>
               <p>Here we set things up slightly differently for handling rows.
 The default values above handle columns.</p>
@@ -4483,11 +4523,11 @@ The default values above handle columns.</p>
         </li>
         
         
-        <li id="section-162">
+        <li id="section-163">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-162">&#182;</a>
+                <a class="pilcrow" href="#section-163">&#182;</a>
               </div>
               <p>Labels are divided into planes, one plane of comment per series of data.
 Here we add and remove planes as necessary.</p>
@@ -4502,11 +4542,11 @@ Here we add and remove planes as necessary.</p>
         </li>
         
         
-        <li id="section-163">
+        <li id="section-164">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-163">&#182;</a>
+                <a class="pilcrow" href="#section-164">&#182;</a>
               </div>
               <p>Labels occur on a plane. Here we subselect data from a plane. We then add and remove labels
 as necessary.</p>
@@ -4521,11 +4561,11 @@ as necessary.</p>
         </li>
         
         
-        <li id="section-164">
+        <li id="section-165">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-164">&#182;</a>
+                <a class="pilcrow" href="#section-165">&#182;</a>
               </div>
               <p>Add new ‘blank’ labels.</p>
 
@@ -4549,11 +4589,11 @@ as necessary.</p>
         </li>
         
         
-        <li id="section-165">
+        <li id="section-166">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-165">&#182;</a>
+                <a class="pilcrow" href="#section-166">&#182;</a>
               </div>
               <p>Hide them or animate them fading in.</p>
 
@@ -4576,11 +4616,11 @@ as necessary.</p>
         </li>
         
         
-        <li id="section-166">
+        <li id="section-167">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-166">&#182;</a>
+                <a class="pilcrow" href="#section-167">&#182;</a>
               </div>
               <p>Calculate beginning and end angles.</p>
 
@@ -4605,11 +4645,11 @@ as necessary.</p>
         </li>
         
         
-        <li id="section-167">
+        <li id="section-168">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-167">&#182;</a>
+                <a class="pilcrow" href="#section-168">&#182;</a>
               </div>
               <p>Anchor depends on the side of the pie that the text appears on.</p>
 
@@ -4624,11 +4664,11 @@ as necessary.</p>
         </li>
         
         
-        <li id="section-168">
+        <li id="section-169">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-168">&#182;</a>
+                <a class="pilcrow" href="#section-169">&#182;</a>
               </div>
               <p>We want labels on the bottom half of the pie chart to hang,
 and those on the top to use their lower baseline.</p>
@@ -4652,11 +4692,11 @@ and those on the top to use their lower baseline.</p>
         </li>
         
         
-        <li id="section-169">
+        <li id="section-170">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-169">&#182;</a>
+                <a class="pilcrow" href="#section-170">&#182;</a>
               </div>
               <p>This is used to determine if we should scale text.
 If we are drawing series data, the range should be contracted a bit.</p>
@@ -4688,11 +4728,11 @@ If we are drawing series data, the range should be contracted a bit.</p>
         </li>
         
         
-        <li id="section-170">
+        <li id="section-171">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-170">&#182;</a>
+                <a class="pilcrow" href="#section-171">&#182;</a>
               </div>
               <p>We have enough space to flip the text into the bar.</p>
 
@@ -4706,11 +4746,11 @@ If we are drawing series data, the range should be contracted a bit.</p>
         </li>
         
         
-        <li id="section-171">
+        <li id="section-172">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-171">&#182;</a>
+                <a class="pilcrow" href="#section-172">&#182;</a>
               </div>
               <p>Text has been flipped. Shift it slightly the other way.</p>
 
@@ -4724,11 +4764,11 @@ If we are drawing series data, the range should be contracted a bit.</p>
         </li>
         
         
-        <li id="section-172">
+        <li id="section-173">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-172">&#182;</a>
+                <a class="pilcrow" href="#section-173">&#182;</a>
               </div>
               <p>Now that the labels have their text set, lets scale
 them to fit the rangeBand.</p>
@@ -4753,11 +4793,11 @@ them to fit the rangeBand.</p>
         </li>
         
         
-        <li id="section-173">
+        <li id="section-174">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-173">&#182;</a>
+                <a class="pilcrow" href="#section-174">&#182;</a>
               </div>
               <p>An initial pass to see if we should shrink text. The visibility
 test is to ensure we don’t have an NS_ERROR_FAILURE on requesting the bounding box.</p>
@@ -4873,11 +4913,11 @@ test is to ensure we don’t have an NS_ERROR_FAILURE on requesting the bounding
         </li>
         
         
-        <li id="section-174">
+        <li id="section-175">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-174">&#182;</a>
+                <a class="pilcrow" href="#section-175">&#182;</a>
               </div>
               <p>Passes two possible arguments. The first is the data that should be formatted. The second
 is an indiciation of the amount of compression that should occur, as determined by the
@@ -4894,11 +4934,11 @@ determineCompression function.</p>
         </li>
         
         
-        <li id="section-175">
+        <li id="section-176">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-175">&#182;</a>
+                <a class="pilcrow" href="#section-176">&#182;</a>
               </div>
               <p>This function should return a numeric indication of how much compression the label format
 should incur. This number needs to be meaningful only to the label format function.
@@ -4933,26 +4973,13 @@ Larger numbers, however, should mean smaller compression.</p>
         </li>
         
         
-        <li id="section-176">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-176">&#182;</a>
-              </div>
-              <hr>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-177">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-177">&#182;</a>
               </div>
-              <h3 id="drawing-chart-legends">Drawing chart legends</h3>
+              <hr>
 
             </div>
             
@@ -4964,6 +4991,19 @@ Larger numbers, however, should mean smaller compression.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-178">&#182;</a>
+              </div>
+              <h3 id="drawing-chart-legends">Drawing chart legends</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-179">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-179">&#182;</a>
               </div>
               <p>This determines the amount of space required for a legend, and also
 renders that legend.</p>
@@ -5020,11 +5060,11 @@ renders that legend.</p>
         </li>
         
         
-        <li id="section-179">
+        <li id="section-180">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-179">&#182;</a>
+                <a class="pilcrow" href="#section-180">&#182;</a>
               </div>
               <p>The selection object seems to have been damaged here. If we only use the original
 selection, then d3 begins to complain about undefined functions. So we reselect
@@ -5089,11 +5129,11 @@ the element that it was pointing to.</p>
         </li>
         
         
-        <li id="section-180">
+        <li id="section-181">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-180">&#182;</a>
+                <a class="pilcrow" href="#section-181">&#182;</a>
               </div>
               <p>This index and odd data indexing is needed because d3 is only returning an index of 0, and has not
 properly updated the data for these subelements.</p>
@@ -5111,11 +5151,11 @@ properly updated the data for these subelements.</p>
         </li>
         
         
-        <li id="section-181">
+        <li id="section-182">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-181">&#182;</a>
+                <a class="pilcrow" href="#section-182">&#182;</a>
               </div>
               <p>Now we want to lay out the legend in columns. So we will
 first determine the longest entry.</p>
@@ -5164,11 +5204,11 @@ first determine the longest entry.</p>
         </li>
         
         
-        <li id="section-182">
+        <li id="section-183">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-182">&#182;</a>
+                <a class="pilcrow" href="#section-183">&#182;</a>
               </div>
               <hr>
 
@@ -5177,11 +5217,11 @@ first determine the longest entry.</p>
         </li>
         
         
-        <li id="section-183">
+        <li id="section-184">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-183">&#182;</a>
+                <a class="pilcrow" href="#section-184">&#182;</a>
               </div>
               
             </div>
@@ -5242,11 +5282,11 @@ first determine the longest entry.</p>
         </li>
         
         
-        <li id="section-184">
+        <li id="section-185">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-184">&#182;</a>
+                <a class="pilcrow" href="#section-185">&#182;</a>
               </div>
               <hr>
 
@@ -5255,11 +5295,11 @@ first determine the longest entry.</p>
         </li>
         
         
-        <li id="section-185">
+        <li id="section-186">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-185">&#182;</a>
+                <a class="pilcrow" href="#section-186">&#182;</a>
               </div>
               
             </div>
