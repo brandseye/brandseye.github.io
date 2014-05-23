@@ -3497,7 +3497,12 @@ representing the API endpoint that you wish to access. For example, rest/account
     groupby: "published",
     success: function(data) { console.log("Received", data); }
 });
-</code></pre>
+</code></pre><h3 id="caveats-on-its-use">Caveats on its use</h3>
+<p>Using this function on the client-side <em>will</em> expose your API key. To prevent this, you should
+proxy all calls to our server via your own servers. By changing the <strong>brandseye.charts.brandsEyeAPI</strong> field,
+you can have this method talk to your own servers, using a user supplied username and password. Or, alternatively,
+this function works well in both <a href="http://nodejs.org/">node</a> and <a href="http://phantomjs.org/">phantomJS</a>.</p>
+
             </div>
             
             <div class="content"><div class='highlight'><pre>
