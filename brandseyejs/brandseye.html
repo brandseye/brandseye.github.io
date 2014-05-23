@@ -147,11 +147,17 @@ data from the BrandsEye API. These examples do require a BrandsEye API key.</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>We version the library using <a href="http://semver.org/">semantic versioning</a>.</p>
+              <h3 id="changes">Changes</h3>
+<p>We version the library using <a href="http://semver.org/">semantic versioning</a>.</p>
+<ul>
+<li>1.0.0: Initial release</li>
+<li>1.1.0: the elementClick and tooltipShow events on the word cloud now passes the dom element that was clicked<pre><code>   as the second argument to the event.
+</code></pre></li>
+</ul>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    version: <span class="hljs-string">"1.0.0"</span>
+            <div class="content"><div class='highlight'><pre>    version: <span class="hljs-string">"1.1.0"</span>
 };</pre></div></div>
             
         </li>
@@ -2931,6 +2937,14 @@ layout that you like, you can effectively save and replay that.</p>
 <p>If you want to stop the animation, call the <strong>stop()</strong> method.</p>
 <p>This is an example of a word cloud:</p>
 <p><img src="http://brandseye.github.io/brandseyejs/images/word-cloud.png" alt="Histogram example"></p>
+<h4 id="events">Events</h4>
+<ul>
+<li>elementClick: passed two arguments, the first being the data element associated with the word that
+was clicked, the second being the dom element that was clicked.</li>
+<li>tooltipShow: called when the mouse hovers over a word, passing the word and the associated dom object as the
+first and second objects.</li>
+<li>tooltipHide: called when the mouse moves off of a word.</li>
+</ul>
 
             </div>
             
@@ -3071,12 +3085,12 @@ and lays them out.</p>
             .append(<span class="hljs-string">"text"</span>)
             .classed(<span class="hljs-string">'word'</span>, <span class="hljs-literal">true</span>)
             .attr(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>)
-            .on(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> dispatch.elementClick(d); });
+            .on(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> dispatch.elementClick(d, <span class="hljs-keyword">this</span>); });
 
         text
             .text(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.text; })
             .style(<span class="hljs-string">'font-family'</span>, <span class="hljs-keyword">this</span>.font())
-            .on(<span class="hljs-string">'mouseover'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> dispatch.tooltipShow(d); })
+            .on(<span class="hljs-string">'mouseover'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> dispatch.tooltipShow(d, <span class="hljs-keyword">this</span>); })
             .on(<span class="hljs-string">'mouseout'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> dispatch.tooltipHide(d); });
 
         text
