@@ -2337,6 +2337,10 @@ are rendered horizontally: if you would like vertical bars, see the <em>ColumnCh
         <span class="hljs-keyword">this</span>.attributes.maxLabelLength = maxLabelLength;
     };
 
+    namespace.BarChart.prototype.preRenderXAxisTicks = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+        <span class="hljs-keyword">this</span>.nvChart().xAxis.tickFormat(_.partial(xAxisTickFormat, xAxisRestriction));
+    };
+
     namespace.BarChart.prototype.calculateLegendMargin = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
         <span class="hljs-keyword">return</span> {top: <span class="hljs-number">0</span>, left: <span class="hljs-number">30</span>, right: <span class="hljs-keyword">this</span>.width()};
     };
@@ -2483,6 +2487,10 @@ are rendered vertically: if you would like horizontal bars, see the <em>BarChart
             <span class="hljs-keyword">this</span>.attributes.maxXLabelLength = maxXLabelLength;
             <span class="hljs-keyword">this</span>.attributes.maxYLabelLength = maxYLabelLength;
         }
+    };
+
+    namespace.ColumnChart.prototype.preRenderXAxisTicks = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+        <span class="hljs-keyword">this</span>.nvChart().xAxis.tickFormat(_.partial(xAxisTickFormat, xAxisRestriction));
     };
 
     namespace.ColumnChart.prototype.postRenderXAxisTicks = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
@@ -3638,7 +3646,8 @@ the data. This function has a way to set up a query on a particular account, ini
 with the appropriate type, and then provides easy access to the graph in order to customise it.
 There are various examples below of this happening.</p>
 <p>The <strong>loadFromApi()</strong> function is defined further below.</p>
-<p>Showing a metric is simple:</p>
+<p>Showing a metric is simple, and makes use of the <strong>run()</strong> method, which
+begins the process of downloading the data:</p>
 <pre><code><span class="hljs-comment">// Define the account, api key, and filter to use</span>
 <span class="hljs-keyword">var</span> metric = <span class="hljs-keyword">new</span> brandseye.charts.VolumeMetric({
     account: <span class="hljs-string">"BEMF33AA"</span>,
@@ -3648,11 +3657,17 @@ There are various examples below of this happening.</p>
 
 <span class="hljs-comment">// Specify the element's height/width and supply</span>
 <span class="hljs-comment">// a dom object to render to.</span>
-metric
-    .element(element)
-    .width(<span class="hljs-number">512</span>)
-    .height(<span class="hljs-number">350</span>)
-    .render();
+metric.run(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(chart, data)</span> {</span>
+     console.log(<span class="hljs-string">"This is the data we received"</span>, data);
+
+     <span class="hljs-comment">// Notice that we don't need to set the data.</span>
+     <span class="hljs-comment">// It has already been set.</span>
+     chart
+         .element(element)
+         .width(<span class="hljs-number">512</span>)
+         .height(<span class="hljs-number">350</span>)
+         .render();
+});
 </code></pre>
             </div>
             
