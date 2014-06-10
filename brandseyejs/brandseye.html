@@ -150,16 +150,17 @@ data from the BrandsEye API. These examples do require a BrandsEye API key.</li>
               <h3 id="changes">Changes</h3>
 <p>We version the library using <a href="http://semver.org/">semantic versioning</a>.</p>
 <ul>
-<li>1.0.0: Initial release</li>
+<li>1.2.0: Histogram now supports an “hourly” coarseness.</li>
+<li>1.1.2: bug fix: some charts are produced with an x value that Batik does not like.</li>
+<li>1.1.1: BarCharts and ColumnCharts were incorrectly formatting data labels.</li>
 <li>1.1.0: the elementClick and tooltipShow events on the word cloud now passes the dom element that was clicked<pre><code>   as the second argument to the event.
 </code></pre></li>
-<li>1.1.1: BarCharts and ColumnCharts were incorrectly formatting data labels.</li>
-<li>1.1.2: bug fix: some charts are produced with an x value that Batik does not like.</li>
+<li>1.0.0: Initial release</li>
 </ul>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    version: <span class="hljs-string">"1.1.2"</span>
+            <div class="content"><div class='highlight'><pre>    version: <span class="hljs-string">"1.2.0"</span>
 };</pre></div></div>
             
         </li>
@@ -660,7 +661,7 @@ brandseye.charts = <span class="hljs-function"><span class="hljs-keyword">functi
     <span class="hljs-keyword">var</span> defaultLabelRestriction = <span class="hljs-number">15</span>;
     <span class="hljs-keyword">var</span> xAxisRestriction = <span class="hljs-number">25</span>;
     <span class="hljs-keyword">var</span> loadingText = <span class="hljs-string">''</span>;
-    <span class="hljs-keyword">var</span> dateRegex = <span class="hljs-regexp">/^\d+-\d+-\d+$/</span>;
+    <span class="hljs-keyword">var</span> dateRegex = <span class="hljs-regexp">/^\d+-\d+-\d+(\s\d\d:\d\d)?$/</span>;
 
     <span class="hljs-comment">/*
      * Attempts to limit the text of x-axis labels to an appropriate length.
@@ -1830,10 +1831,11 @@ For the pie chart, this would be the colour per slice.</p>
               </div>
               <p>Of use for the histogram. It defines the time period of the <em>x</em>-axis. It may be set to:</p>
 <ul>
+<li>hourly</li>
+<li>daily</li>
 <li>weekly</li>
 <li>monthly</li>
 <li>yearly</li>
-<li>daily</li>
 </ul>
 <p>and defaults to daily.</p>
 
@@ -2089,6 +2091,11 @@ such as for showing the number of mentions appearing over time.</p>
     namespace.Histogram.prototype = <span class="hljs-keyword">new</span> namespace.Graph();
     namespace.Histogram.prototype.createChart = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> nv.models.multiBarChart(); };
 
+    namespace.Histogram.prototype.defaultMarginBottom = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.coarseness() == <span class="hljs-string">'hourly'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">40</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">20</span>;
+    }
+
     namespace.Histogram.prototype.arrangeTicks = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
         <span class="hljs-keyword">var</span> seen = <span class="hljs-literal">false</span>;
         <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
@@ -2098,7 +2105,11 @@ such as for showing the number of mentions appearing over time.</p>
         <span class="hljs-keyword">var</span> xScale = <span class="hljs-keyword">this</span>.nvChart().multibar.xScale();
 
         <span class="hljs-keyword">var</span> isMonday = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(m)</span> {</span>
-            <span class="hljs-keyword">return</span> m.day() === <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">return</span> m.day() === <span class="hljs-number">1</span> &amp;&amp; (m.hour() != <span class="hljs-number">0</span> || that.coarseness() != <span class="hljs-string">"hourly"</span>);
+        };
+
+        <span class="hljs-keyword">var</span> isDayStart = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(m)</span> {</span>
+            <span class="hljs-keyword">return</span> that.coarseness() == <span class="hljs-string">"hourly"</span> &amp;&amp; m.hour() == <span class="hljs-number">0</span>;
         };</pre></div></div>
             
         </li>
@@ -2158,8 +2169,9 @@ such as for showing the number of mentions appearing over time.</p>
                 }
 
                 <span class="hljs-comment">/* TODO sometimes we should rotate nothing, if the rangeBand is large enough. */</span>
-                <span class="hljs-keyword">var</span> rotate = xScale.rangeBand() / that.data().length &lt; <span class="hljs-number">20</span> ||
-                    that.longFormat(m, position) || isMonday(m) ||
+                <span class="hljs-keyword">var</span> rangeBandWidth = that.coarseness() == <span class="hljs-string">'hourly'</span> ? <span class="hljs-number">30</span> : <span class="hljs-number">20</span>;
+                <span class="hljs-keyword">var</span> rotate = xScale.rangeBand() / that.data().length &lt; rangeBandWidth ||
+                    that.longFormat(m, position) || isMonday(m) || isDayStart(m) ||
                     _(that.data()).any(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.values[<span class="hljs-number">0</span>].published === data;});
                 <span class="hljs-keyword">var</span> angle = that.coarseness() === <span class="hljs-string">'monthly'</span> || that.coarseness() === <span class="hljs-string">'weekly'</span> ? -<span class="hljs-number">30</span> : -<span class="hljs-number">90</span>;
                 <span class="hljs-keyword">var</span> yOffset = that.coarseness() === <span class="hljs-string">'monthly'</span> || that.coarseness() === <span class="hljs-string">'weekly'</span> ? <span class="hljs-number">0</span> : <span class="hljs-number">5</span>;
@@ -2167,7 +2179,7 @@ such as for showing the number of mentions appearing over time.</p>
                 d3.select(<span class="hljs-keyword">this</span>)
                     .style(<span class="hljs-string">'text-anchor'</span>, rotate ? <span class="hljs-string">'end'</span> : <span class="hljs-string">'middle'</span>)
                     .attr(<span class="hljs-string">'class'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span>
-                        <span class="hljs-keyword">if</span> (!d || that.coarseness() !== <span class="hljs-string">'daily'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;</pre></div></div>
+                        <span class="hljs-keyword">if</span> (!d || (that.coarseness() !== <span class="hljs-string">'daily'</span> &amp;&amp; that.coarseness() !== <span class="hljs-string">'hourly'</span>)) <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;</pre></div></div>
             
         </li>
         
@@ -2182,9 +2194,10 @@ such as for showing the number of mentions appearing over time.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>                        <span class="hljs-keyword">if</span> (m.month() === <span class="hljs-number">0</span> &amp;&amp; m.date() === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">"year-begin"</span>;
-                        <span class="hljs-keyword">if</span> (m.date() == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">"month-begin"</span>;
-                        <span class="hljs-keyword">if</span> (m.day() == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">"week-begin"</span>;
+            <div class="content"><div class='highlight'><pre>                        <span class="hljs-keyword">if</span> (m.month() === <span class="hljs-number">0</span> &amp;&amp; m.date() === <span class="hljs-number">1</span> &amp;&amp; isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"year-begin"</span>;
+                        <span class="hljs-keyword">if</span> (m.date() == <span class="hljs-number">1</span> &amp;&amp; isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"month-begin"</span>;
+                        <span class="hljs-keyword">if</span> (m.day() == <span class="hljs-number">1</span> &amp;&amp; isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"week-begin"</span>;
+                        <span class="hljs-keyword">if</span> (isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"day-begin"</span>;
                         <span class="hljs-keyword">return</span> <span class="hljs-string">"standard-day"</span>;
                     })
                     .attr(<span class="hljs-string">'transform'</span>, rotate ? <span class="hljs-string">'translate (-10, '</span> + yOffset + <span class="hljs-string">') rotate('</span> + angle + <span class="hljs-string">' 0,0)'</span> : <span class="hljs-string">''</span>)
@@ -2234,12 +2247,19 @@ such as for showing the number of mentions appearing over time.</p>
         <span class="hljs-keyword">var</span> nvChart = <span class="hljs-keyword">this</span>.nvChart();
         <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
 
+
         <span class="hljs-keyword">if</span> (nvChart.xAxis) {
             nvChart.xAxis.tickFormat(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> {</span>
                 <span class="hljs-keyword">if</span> (!dateRegex.test(d)) <span class="hljs-keyword">return</span> d;
                 <span class="hljs-keyword">var</span> m = <span class="hljs-keyword">new</span> moment(d);
 
                 <span class="hljs-keyword">switch</span> (that.coarseness()) {
+                    <span class="hljs-keyword">case</span> <span class="hljs-string">'hourly'</span>:
+                        <span class="hljs-keyword">if</span> ((that.longFormat(m, i) &amp;&amp; m.hour() == <span class="hljs-number">0</span>) || i == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> m.format(<span class="hljs-string">"MMM D, HH:mm"</span>);
+                        <span class="hljs-keyword">if</span> (m.day() === <span class="hljs-number">1</span> &amp;&amp; m.hour() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> m.format(<span class="hljs-string">"ddd DD, HH:mm"</span>);
+                        <span class="hljs-keyword">if</span> (m.hour() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> m.format(<span class="hljs-string">"ddd D, HH:mm"</span>);
+
+                        <span class="hljs-keyword">return</span> m.format(<span class="hljs-string">"HH:mm"</span>);
                     <span class="hljs-keyword">case</span> <span class="hljs-string">'daily'</span>:
                         <span class="hljs-keyword">if</span> (that.longFormat(m, i)) <span class="hljs-keyword">return</span> m.format(<span class="hljs-string">"MMM DD"</span>);
                         <span class="hljs-keyword">if</span> (m.day() === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> m.format(<span class="hljs-string">"ddd DD"</span>);
