@@ -2094,7 +2094,7 @@ such as for showing the number of mentions appearing over time.</p>
     namespace.Histogram.prototype.defaultMarginBottom = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
         <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.coarseness() == <span class="hljs-string">'hourly'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">40</span>;
         <span class="hljs-keyword">return</span> <span class="hljs-number">20</span>;
-    }
+    };
 
     namespace.Histogram.prototype.arrangeTicks = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
         <span class="hljs-keyword">var</span> seen = <span class="hljs-literal">false</span>;
@@ -2109,7 +2109,7 @@ such as for showing the number of mentions appearing over time.</p>
         };
 
         <span class="hljs-keyword">var</span> isDayStart = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(m)</span> {</span>
-            <span class="hljs-keyword">return</span> that.coarseness() == <span class="hljs-string">"hourly"</span> &amp;&amp; m.hour() == <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">return</span> m.hour() == <span class="hljs-number">0</span> &amp;&amp; m.minute() == <span class="hljs-number">0</span>;
         };</pre></div></div>
             
         </li>
@@ -2197,7 +2197,7 @@ such as for showing the number of mentions appearing over time.</p>
             <div class="content"><div class='highlight'><pre>                        <span class="hljs-keyword">if</span> (m.month() === <span class="hljs-number">0</span> &amp;&amp; m.date() === <span class="hljs-number">1</span> &amp;&amp; isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"year-begin"</span>;
                         <span class="hljs-keyword">if</span> (m.date() == <span class="hljs-number">1</span> &amp;&amp; isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"month-begin"</span>;
                         <span class="hljs-keyword">if</span> (m.day() == <span class="hljs-number">1</span> &amp;&amp; isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"week-begin"</span>;
-                        <span class="hljs-keyword">if</span> (isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"day-begin"</span>;
+                        <span class="hljs-keyword">if</span> (that.coarseness() === <span class="hljs-string">"hourly"</span> &amp;&amp; isDayStart(m)) <span class="hljs-keyword">return</span> <span class="hljs-string">"day-begin"</span>;
                         <span class="hljs-keyword">return</span> <span class="hljs-string">"standard-day"</span>;
                     })
                     .attr(<span class="hljs-string">'transform'</span>, rotate ? <span class="hljs-string">'translate (-10, '</span> + yOffset + <span class="hljs-string">') rotate('</span> + angle + <span class="hljs-string">' 0,0)'</span> : <span class="hljs-string">''</span>)
