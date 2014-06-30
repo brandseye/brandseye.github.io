@@ -150,6 +150,7 @@ data from the BrandsEye API. These examples do require a BrandsEye API key.</li>
               <h3 id="changes">Changes</h3>
 <p>We version the library using <a href="http://semver.org/">semantic versioning</a>.</p>
 <ul>
+<li>1.2.2: Fixed a bug in which some labels may be rotated, but not others</li>
 <li>1.2.1: Fixed a bug in which the support for hours broke the highlighting of the beginning of the month<pre><code>   <span class="hljs-keyword">in</span> the histogram.
 </code></pre></li>
 <li>1.2.0: Histogram now supports an “hourly” coarseness.</li>
@@ -2171,9 +2172,10 @@ such as for showing the number of mentions appearing over time.</p>
                 }
 
                 <span class="hljs-comment">/* TODO sometimes we should rotate nothing, if the rangeBand is large enough. */</span>
+                <span class="hljs-keyword">var</span> mondayRotate = that.coarseness() != <span class="hljs-string">'hourly'</span> &amp;&amp; isMonday(m);
                 <span class="hljs-keyword">var</span> rangeBandWidth = that.coarseness() == <span class="hljs-string">'hourly'</span> ? <span class="hljs-number">30</span> : <span class="hljs-number">20</span>;
                 <span class="hljs-keyword">var</span> rotate = xScale.rangeBand() / that.data().length &lt; rangeBandWidth ||
-                    that.longFormat(m, position) || isMonday(m) || isDayStart(m) ||
+                    that.longFormat(m, position) || mondayRotate || isDayStart(m) ||
                     _(that.data()).any(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> {</span> <span class="hljs-keyword">return</span> d.values[<span class="hljs-number">0</span>].published === data;});
                 <span class="hljs-keyword">var</span> angle = that.coarseness() === <span class="hljs-string">'monthly'</span> || that.coarseness() === <span class="hljs-string">'weekly'</span> ? -<span class="hljs-number">30</span> : -<span class="hljs-number">90</span>;
                 <span class="hljs-keyword">var</span> yOffset = that.coarseness() === <span class="hljs-string">'monthly'</span> || that.coarseness() === <span class="hljs-string">'weekly'</span> ? <span class="hljs-number">0</span> : <span class="hljs-number">5</span>;
