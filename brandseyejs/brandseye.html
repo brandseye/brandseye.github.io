@@ -150,6 +150,7 @@ data from the BrandsEye API. These examples do require a BrandsEye API key.</li>
               <h3 id="changes">Changes</h3>
 <p>We version the library using <a href="http://semver.org/">semantic versioning</a>.</p>
 <ul>
+<li>1.2.3: Fixed a bug in which hourly labels are wrongly rotated at the beginning of a month.</li>
 <li>1.2.2: Fixed a bug in which some labels may be rotated, but not others</li>
 <li>1.2.1: Fixed a bug in which the support for hours broke the highlighting of the beginning of the month<pre><code>   <span class="hljs-keyword">in</span> the histogram.
 </code></pre></li>
@@ -2301,7 +2302,9 @@ with the date.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    namespace.Histogram.prototype.longFormat = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(m, i)</span> {</span> <span class="hljs-keyword">return</span> i === <span class="hljs-number">0</span> || m.date() === <span class="hljs-number">1</span>; };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    namespace.Histogram.prototype.longFormat = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(m, i)</span> {</span>
+        <span class="hljs-keyword">return</span> i === <span class="hljs-number">0</span> || (m.date() === <span class="hljs-number">1</span> &amp;&amp; (<span class="hljs-keyword">this</span>.coarseness() !== <span class="hljs-string">'hourly'</span> || (m.hour() == <span class="hljs-number">0</span> &amp;&amp; m.minute() == <span class="hljs-number">0</span>)));
+    };</pre></div></div>
             
         </li>
         
